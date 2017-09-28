@@ -20,7 +20,7 @@
  * ---------------------------------------------------------------------
  */
 
-
+#define NTA_INTERNAL
 #include <nupic/engine/NuPIC.hpp>
 #include <nupic/engine/Network.hpp>
 #include <nupic/engine/Region.hpp>

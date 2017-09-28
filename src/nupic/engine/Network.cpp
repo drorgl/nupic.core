@@ -24,6 +24,8 @@
 Implementation of the Network class
 */
 
+#define NOMINMAX
+
 #include <limits>
 #include <iostream>
 #include <sstream>

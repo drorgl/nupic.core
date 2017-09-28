@@ -24,9 +24,11 @@
  * Implementation of utility functions for string conversion
  */
 
+#include <algorithm>
+
 #include <nupic/utils/StringUtils.hpp>
 #include <nupic/utils/Log.hpp>
-#include <apr-1/apr_base64.h>
+#include <apr_base64.h>
 
 using namespace nupic;
 
@@ -352,17 +354,20 @@ bool StringUtils::toIntListNoThrow(const std::string& s, std::vector<Int>& list,
     
   
 //--------------------------------------------------------------------------------
-boost::shared_array<Byte> StringUtils::toByteArray(const std::string& s, Size bitCount)
+//boost::shared_array<Byte> StringUtils::toByteArray(const std::string& s, Size bitCount)
+std::shared_ptr<Byte> StringUtils::toByteArray(const std::string& s, Size bitCount)
 {
   // Get list of integers
   std::vector<Int> list;
   StringUtils::toIntList(s, list, true /*allowAll*/);
   if (list.empty())
-    return boost::shared_array<Byte>(nullptr);
+    //return boost::shared_array<Byte>(nullptr);
+	return std::shared_ptr<Byte>(nullptr);
           
   // Put this into the mask
   Size numBytes = (bitCount+7) / 8;
-  boost::shared_array<Byte> mask(new Byte[numBytes]);
+  //boost::shared_array<Byte> mask(new Byte[numBytes]);
+  std::shared_ptr<Byte> mask(new Byte[numBytes]);
   Byte* maskP = mask.get();
   ::memset(maskP, 0, numBytes);
   for (auto & elem : list) {

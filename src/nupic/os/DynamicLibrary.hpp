@@ -29,6 +29,7 @@
 //----------------------------------------------------------------------
 
 #if defined(NTA_OS_WINDOWS)
+  #define NOMINMAX
   #include <Windows.h>
 #else
   #include <dlfcn.h>

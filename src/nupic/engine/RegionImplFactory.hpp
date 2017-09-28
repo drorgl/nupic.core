@@ -35,8 +35,9 @@
 
 #include <map>
 #include <string>
+#include <memory>
 
-#include <boost/shared_ptr.hpp>
+//#include <boost/shared_ptr.hpp>
 #include <capnp/any.h>
 
 namespace nupic
@@ -110,7 +111,7 @@ namespace nupic
     // Using shared_ptr here to ensure the dynamic python library object
     // is deleted when the factory goes away. Can't use scoped_ptr
     // because it is not initialized in the constructor.
-    boost::shared_ptr<DynamicPythonLibrary> pyLib_;
+    std::shared_ptr<DynamicPythonLibrary> pyLib_;
   };
 }
 

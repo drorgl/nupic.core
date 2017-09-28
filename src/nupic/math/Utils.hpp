@@ -42,7 +42,7 @@
 #include <stdexcept>
 #include <cstdlib>
 
-#include <boost/shared_array.hpp>
+//#include <boost/shared_array.hpp>
 
 #include <nupic/types/Types.hpp>
 #include <nupic/utils/Log.hpp>

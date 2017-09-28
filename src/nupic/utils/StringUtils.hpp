@@ -27,9 +27,9 @@
 #ifndef NTA_STRING_UTILS_HPP
 #define NTA_STRING_UTILS_HPP
 
-
+#include <memory>
 #include <nupic/types/Types.hpp>
-#include <boost/shared_array.hpp>
+//#include <boost/shared_array.hpp>
 #include <string>
 #include <vector>
 #include <set>
@@ -188,7 +188,8 @@ namespace nupic
      * @retval          boost::shared_array containing the dynamically allocated mask
      *
      */
-    static boost::shared_array<Byte> toByteArray(const std::string& s, Size bitCount);
+    //static boost::shared_array<Byte> toByteArray(const std::string& s, Size bitCount);
+	static std::shared_ptr<Byte> toByteArray(const std::string& s, Size bitCount);
 
   };
 }

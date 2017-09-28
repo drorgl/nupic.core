@@ -24,7 +24,6 @@
  * Implementation of the Value class
  */
 
-
 #include <nupic/ntypes/Value.hpp>
 #include <nupic/utils/Log.hpp>
 
@@ -33,19 +32,19 @@ using namespace nupic;
 
 
 
-Value::Value(boost::shared_ptr<Scalar>& s)
+Value::Value(std::shared_ptr<Scalar>& s)
 {
   category_ = scalarCategory;
   scalar_ = s;
 }
 
-Value::Value(boost::shared_ptr<Array>& a)
+Value::Value(std::shared_ptr<Array>& a)
 {
   category_ = arrayCategory;
   array_ = a;
 }
 
-Value::Value(boost::shared_ptr<std::string>& s)
+Value::Value(std::shared_ptr<std::string>& s)
 {
   category_ = stringCategory;
   string_ = s;
@@ -83,19 +82,19 @@ NTA_BasicType Value::getType() const
   }
 }
 
-boost::shared_ptr<Scalar> Value::getScalar() const
+std::shared_ptr<Scalar> Value::getScalar() const
 {
   NTA_CHECK(category_ == scalarCategory);
   return scalar_;
 }
 
-boost::shared_ptr<Array> Value::getArray() const
+std::shared_ptr<Array> Value::getArray() const
 {
   NTA_CHECK(category_ == arrayCategory);
   return array_;
 }
 
-boost::shared_ptr<std::string> Value::getString() const
+std::shared_ptr<std::string> Value::getString() const
 {
   NTA_CHECK(category_ == stringCategory);
   return string_;
@@ -260,7 +259,7 @@ template <typename T> T ValueMap::getScalarT(const std::string& key, T defaultVa
 
 template <typename T> T ValueMap::getScalarT(const std::string& key) const
 {
-  boost::shared_ptr<Scalar> s = getScalar(key);
+  std::shared_ptr<Scalar> s = getScalar(key);
   if (s->getType() != BasicType::getType<T>())
   {
     NTA_THROW << "Invalid attempt to access parameter '" << key 
@@ -271,7 +270,7 @@ template <typename T> T ValueMap::getScalarT(const std::string& key) const
   return s->getValue<T>();
 }
 
-boost::shared_ptr<Array> ValueMap::getArray(const std::string& key) const
+std::shared_ptr<Array> ValueMap::getArray(const std::string& key) const
 {
   Value& v = getValue(key);
   if (! v.isArray())
@@ -283,7 +282,7 @@ boost::shared_ptr<Array> ValueMap::getArray(const std::string& key) const
   return v.getArray();
 }
 
-boost::shared_ptr<Scalar> ValueMap::getScalar(const std::string& key) const
+std::shared_ptr<Scalar> ValueMap::getScalar(const std::string& key) const
 {
   Value& v = getValue(key);
   if (! v.isScalar())
@@ -295,7 +294,7 @@ boost::shared_ptr<Scalar> ValueMap::getScalar(const std::string& key) const
   return v.getScalar();
 }
 
-boost::shared_ptr<std::string> ValueMap::getString(const std::string& key) const
+std::shared_ptr<std::string> ValueMap::getString(const std::string& key) const
 {
   Value& v = getValue(key);
   if (! v.isString())

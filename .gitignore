@@ -23,3 +23,7 @@ html/
 bindings/py/nupic/bindings/*.cxx
 bindings/py/nupic/bindings/*.py
 bindings/py/nupic/bindings/*.so
+/build.*/
+/src/nupic/proto/*.c++
+/src/nupic/proto/*.h
+/.vscode/

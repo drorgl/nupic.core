@@ -26,8 +26,8 @@ Environment Implementation
 
 #include <nupic/os/Env.hpp>
 #include <nupic/utils/Log.hpp>
-#include <apr-1/apr_general.h>
-#include <apr-1/apr_env.h>
+#include <apr_general.h>
+#include <apr_env.h>
 #include <cctype> // toupper
 #include <algorithm> // std::transform
 

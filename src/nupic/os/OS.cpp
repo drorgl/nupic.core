@@ -30,9 +30,9 @@
 #include <nupic/os/Directory.hpp>
 #include <nupic/os/Env.hpp>
 #include <nupic/utils/Log.hpp>
-#include <apr-1/apr_errno.h>
-#include <apr-1/apr_time.h>
-#include <apr-1/apr_network_io.h>
+#include <apr_errno.h>
+#include <apr_time.h>
+#include <apr_network_io.h>
 
 
 #if defined(NTA_OS_DARWIN)

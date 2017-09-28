@@ -26,18 +26,19 @@
  */
 
 #if defined(NTA_OS_WINDOWS)
-#include <windows.h>
-#include <shlobj.h>
+#define NOMINMAX
+//#include <windows.h>
 
-#include <nupic/os/OS.hpp>
+
 #include <nupic/os/Directory.hpp>
+#include <nupic/os/OS.hpp>
 #include <nupic/os/Path.hpp>
 #include <nupic/os/Directory.hpp>
 #include <nupic/os/Env.hpp>
 #include <nupic/utils/Log.hpp>
 #include <nupic/os/DynamicLibrary.hpp>
-#include <boost/shared_ptr.hpp>
-
+//#include <boost/shared_ptr.hpp>
+#include <shlobj.h>
 
 using namespace nupic;
 

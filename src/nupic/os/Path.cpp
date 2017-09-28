@@ -33,13 +33,14 @@
 
 #include <sstream>
 #include <iterator>
-#include <apr-1/apr.h>
+#include <apr.h>
 
 
 #if defined(NTA_OS_WINDOWS)
   extern "C" {
-    #include <apr-1/arch/win32/apr_arch_utf8.h>
+    #include <arch/win32/apr_arch_utf8.h>
   }
+  #define NOMINMAX
   #include <windows.h>
 #else
   #include <sys/types.h>

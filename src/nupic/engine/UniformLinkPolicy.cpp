@@ -31,7 +31,7 @@
 #include <nupic/utils/Log.hpp>
 #include <nupic/types/Fraction.hpp>
 
-#include <boost/shared_ptr.hpp>
+//#include <boost/shared_ptr.hpp>
 
 namespace nupic
 {
@@ -63,7 +63,7 @@ void UniformLinkPolicy::readParameters(const std::string& params)
 {
   ValueMap paramMap = YAMLUtils::toValueMap(params.c_str(), parameters_);
 
-  boost::shared_ptr<std::string> mappingStr = paramMap.getString("mapping");
+  std::shared_ptr<std::string> mappingStr = paramMap.getString("mapping");
 
   if(*mappingStr == "in")
   {
@@ -91,7 +91,7 @@ void UniformLinkPolicy::readParameters(const std::string& params)
                                    paramMap,
                                    "rfOverlap");
 
-  boost::shared_ptr<std::string> rfGranularityStr =
+  std::shared_ptr<std::string> rfGranularityStr =
     paramMap.getString("rfGranularity");
 
   if(*rfGranularityStr == "nodes")
@@ -121,7 +121,7 @@ void UniformLinkPolicy::readParameters(const std::string& params)
                                    paramMap,
                                    "span");
 
-  boost::shared_ptr<std::string> strictStr =
+  std::shared_ptr<std::string> strictStr =
     paramMap.getString("strict");
 
   if(*strictStr == "true")
@@ -271,7 +271,7 @@ void UniformLinkPolicy::populateArrayParamVector(
 {
   NTA_CHECK(vec.size() == 0);
 
-  boost::shared_ptr<Array> arrayVal = paramMap.getArray(paramName);
+  std::shared_ptr<Array> arrayVal = paramMap.getArray(paramName);
 
   T* buf = (T*) arrayVal->getBuffer();
 

@@ -29,10 +29,11 @@
 #include <nupic/os/Path.hpp>
 #include <nupic/os/OS.hpp>
 #include <nupic/utils/Log.hpp>
-#include <apr-1/apr_file_io.h>
-#include <apr-1/apr_time.h>
+#include <apr_file_io.h>
+#include <apr_time.h>
 
 #if defined(NTA_OS_WINDOWS)
+  #define NOMINMAX
   #include <windows.h>
   #include <tchar.h>
 #else

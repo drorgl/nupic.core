@@ -20,6 +20,8 @@
  * ---------------------------------------------------------------------
  */
 
+#include <memory>
+
 #include <nupic/types/BasicType.hpp>
 #include <nupic/engine/YAMLUtils.hpp>
 #include <nupic/ntypes/Value.hpp>
@@ -39,12 +41,12 @@ namespace YAMLUtils
 /*
  * These functions are used internally by toValue and toValueMap
  */
-static void _toScalar(const YAML::Node& node, boost::shared_ptr<Scalar>& s);
-static void _toArray(const YAML::Node& node, boost::shared_ptr<Array>& a);
+static void _toScalar(const YAML::Node& node, std::shared_ptr<Scalar>& s);
+static void _toArray(const YAML::Node& node, std::shared_ptr<Array>& a);
 static Value toValue(const YAML::Node& node, NTA_BasicType dataType);
 
 
-static void _toScalar(const YAML::Node& node, boost::shared_ptr<Scalar>& s)
+static void _toScalar(const YAML::Node& node, std::shared_ptr<Scalar>& s)
 {
   NTA_CHECK(node.Type() == YAML::NodeType::Scalar);
   switch(s->getType())
@@ -91,7 +93,7 @@ static void _toScalar(const YAML::Node& node, boost::shared_ptr<Scalar>& s)
   }
 }
     
-static void _toArray(const YAML::Node& node, boost::shared_ptr<Array>& a)
+static void _toArray(const YAML::Node& node, std::shared_ptr<Array>& a)
 {
   NTA_CHECK(node.Type() == YAML::NodeType::Sequence);
       
@@ -155,18 +157,18 @@ static Value toValue(const YAML::Node& node, NTA_BasicType dataType)
       // node >> *str;
       std::string val;
       node.Read(val);
-      boost::shared_ptr<std::string> str(new std::string(val));
+      std::shared_ptr<std::string> str(new std::string(val));
       Value v(str);
       return v;
     } else {
-      boost::shared_ptr<Scalar> s(new Scalar(dataType));
+      std::shared_ptr<Scalar> s(new Scalar(dataType));
       _toScalar(node, s);
       Value v(s);
       return v;
     }
   } else {
     // array
-    boost::shared_ptr<Array> a(new Array(dataType));
+    std::shared_ptr<Array> a(new Array(dataType));
     _toArray(node, a);
     Value v(a);
     return v;

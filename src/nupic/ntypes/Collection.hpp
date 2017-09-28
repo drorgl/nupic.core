@@ -23,6 +23,8 @@
 #ifndef NTA_COLLECTION_HPP
 #define NTA_COLLECTION_HPP
 
+#include <nupic/ntypes/Collection.hpp>
+#include <nupic/utils/Log.hpp>
 #include <string>
 #include <vector>
 
@@ -37,32 +39,85 @@ namespace nupic
   class Collection
   {
   public:
-    Collection();
-    virtual ~Collection();
+	  Collection() {}
+	virtual ~Collection() {}
     
-    size_t getCount() const;
+    size_t getCount() const {
+		return vec_.size();
+	}
 
     // This method provides access by index to the contents of the collection
     // The indices are in insertion order.
     //
 
-    const std::pair<std::string, T>& getByIndex(size_t index) const;
-  
-    bool contains(const std::string & name) const;
+    const std::pair<std::string, T>& getByIndex(size_t index) const {
+		NTA_CHECK(index < vec_.size());
+		return vec_[index];
+	}
 
-    T getByName(const std::string & name) const;
+	std::pair<std::string, T>& getByIndex(size_t index)
+	{
+		NTA_CHECK(index < vec_.size());
+		return vec_[index];
+	}
+
+  
+	bool contains(const std::string & name) const {
+		typename CollectionStorage::const_iterator i;
+		for (i = vec_.begin(); i != vec_.end(); i++)
+		{
+			if (i->first == name)
+				return true;
+		}
+		return false;
+	}
+
+    T getByName(const std::string & name) const {
+		typename CollectionStorage::const_iterator i;
+		for (i = vec_.begin(); i != vec_.end(); i++)
+		{
+			if (i->first == name)
+				return i->second;
+		}
+		NTA_THROW << "No item named: " << name;
+	}
 
     // TODO: move add/remove to a ModifiableCollection subclass
     // This method should be internal but is currently tested
     // in net_test.py in test_node_spec
-    void add(const std::string & name, const T & item);
+    void add(const std::string & name, const T & item) {
+		// make sure we don't already have something with this name
+		typename CollectionStorage::const_iterator i;
+		for (i = vec_.begin(); i != vec_.end(); i++)
+		{
+			if (i->first == name)
+			{
+				NTA_THROW << "Unable to add item '" << name << "' to collection "
+					<< "because it already exists";
+		}
+	}
 
-    void remove(const std::string& name);
+		// Add the new item to the vector
+		vec_.push_back(std::make_pair(name, item));
+  }
+
+    void remove(const std::string& name) {
+		typename CollectionStorage::iterator i;
+		for (i = vec_.begin(); i != vec_.end(); i++)
+		{
+			if (i->first == name)
+				break;
+	}
+		if (i == vec_.end())
+			NTA_THROW << "No item named '" << name << "' in collection";
+
+		vec_.erase(i);
+  }
 
 
-#ifdef NTA_INTERNAL
-    std::pair<std::string, T>& getByIndex(size_t index);
-#endif
+//#ifdef NTA_INTERNAL
+//    std::pair<std::string, T>& getByIndex(size_t index);
+//#endif
 
   private:
     typedef std::vector<std::pair<std::string, T> > CollectionStorage;

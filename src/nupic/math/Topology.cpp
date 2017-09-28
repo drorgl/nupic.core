@@ -23,6 +23,8 @@
 /** @file
  * Topology helpers
  */
+#define NOMINMAX
+#include <algorithm>
 
 #include <nupic/math/Topology.hpp>
 #include <nupic/utils/Log.hpp>

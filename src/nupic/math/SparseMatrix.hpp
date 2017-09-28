@@ -33,7 +33,8 @@
 #include <iomanip>
 #include <vector>
 
-#include <boost/unordered_set.hpp>
+//#include <boost/unordered_set.hpp>
+#include <unordered_set>
 
 #include <nupic/math/ArrayAlgo.hpp>
 #include <nupic/math/Math.hpp>
@@ -117,7 +118,7 @@ template <typename UI = nupic::UInt32, typename Real_stor = nupic::Real32,
 class SparseMatrix : public Serializable<SparseMatrixProto> {
   // TODO find boost config flag to enable ullong as UnsignedInteger
   // BOOST_CLASS_REQUIRE(UI, boost, UnsignedIntegerConcept);
-  BOOST_CLASS_REQUIRE(I, boost, SignedIntegerConcept);
+  //BOOST_CLASS_REQUIRE(I, boost, SignedIntegerConcept);
 
 public:
   typedef UI size_type;              // unsigned integral for sizes
@@ -5469,7 +5470,7 @@ public:
       // check that column indices in strictly increasing order
     }
 
-    boost::unordered_set<size_type> skip(it, end);
+    std::unordered_set<size_type> skip(it, end);
 
     ITERATE_ON_ALL_ROWS {
       size_type k = 0;

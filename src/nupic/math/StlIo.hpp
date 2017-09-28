@@ -34,7 +34,7 @@
 
 #include <iostream>
 #include <iomanip>
-#include <boost/type_traits.hpp>
+//#include <boost/type_traits.hpp>
 
 #include <nupic/types/Types.hpp>
 
@@ -440,7 +440,7 @@ namespace nupic {
   template <typename T>
   inline void vector_load(size_t n, std::istream& in_stream, std::vector<T>& v)
   {
-    vector_loader<T, boost::is_fundamental<T>::value > loader;
+    vector_loader<T, std::is_fundamental<T>::value > loader;
     loader.load(n, in_stream, v);
   }
   
@@ -531,7 +531,7 @@ namespace nupic {
   template <typename T>
   inline void vector_save(size_t n, std::ostream& out_stream, const std::vector<T>& v)
   {
-    vector_saver<T, boost::is_fundamental<T>::value> saver;
+    vector_saver<T, std::is_fundamental<T>::value> saver;
     saver.save(n, out_stream, v);
   }
 

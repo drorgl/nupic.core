@@ -24,7 +24,7 @@
  * Implementation of PyHelpers test
  */
 
-#include <nupic/py_support/PyHelpers.hpp>
+//#include <nupic/py_support/PyHelpers.hpp>
 #include <limits>
 #include <gtest/gtest.h>
 

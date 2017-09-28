@@ -32,6 +32,7 @@
 
 #if defined(NTA_OS_WINDOWS)
 
+#define NOMINMAX
 #include <windows.h>
 static nupic::UInt64 ticksPerSec_ = 0;
 static nupic::UInt64 initialTicks_ = 0;

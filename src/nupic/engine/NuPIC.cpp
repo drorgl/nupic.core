@@ -27,7 +27,7 @@
 #include <nupic/engine/NuPIC.hpp>
 #include <nupic/engine/RegionImplFactory.hpp>
 #include <nupic/utils/Log.hpp>
-#include <apr-1/apr_general.h>
+#include <apr_general.h>
 
 namespace nupic
 {

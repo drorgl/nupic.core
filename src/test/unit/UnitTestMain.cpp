@@ -36,7 +36,7 @@ using namespace std;
 using namespace nupic;
 
 // APR must be explicit initialized
-#include <apr-1/apr_general.h>
+#include <apr_general.h>
 
 int main(int argc, char ** argv) {
 

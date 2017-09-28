@@ -36,9 +36,9 @@
 #include <cstdlib>
 #include <unistd.h>   // getuid()
 #include <sys/types.h>
-#include <apr-1/apr_errno.h>
-#include <apr-1/apr_time.h>
-#include <apr-1/apr_network_io.h>
+#include <apr_errno.h>
+#include <apr_time.h>
+#include <apr_network_io.h>
 
 
 using namespace nupic;

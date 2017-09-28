@@ -29,7 +29,7 @@
 #include <nupic/utils/Log.hpp>
 #include <nupic/os/Timer.hpp>
 #include <math.h> // fabs
-#include <apr-1/apr_time.h>
+#include <apr_time.h>
 #include <gtest/gtest.h>
 
 using namespace nupic;
