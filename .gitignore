@@ -25,5 +25,7 @@ bindings/py/nupic/bindings/*.py
 bindings/py/nupic/bindings/*.so
 /build.*/
 /src/nupic/proto/*.c++
+/src/nupic/proto/*.capnp.cpp
 /src/nupic/proto/*.h
 /.vscode/
+/*.module/

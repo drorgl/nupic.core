@@ -143,17 +143,28 @@
 		],
 	},
 	'targets':
-	[{
+	[
+		{
+			'target_name':'build_capnp_tool',
+			'type':'none',
+			'dependencies': [
+				"../capnproto.module/capnproto.gyp:capnp",
+				"../capnproto.module/capnproto.gyp:capnpc-c++",
+				"../capnproto.module/capnproto.gyp:capnpc-capnp",
+			]
+		},
+		{
 			'target_name': 'nupic_core',
 			 # 'type': '<(library)',
 			 # 'type': 'shared_library',
 			'type': 'static_library',
 			'dependencies': [
-				"../../../_CPPModules/capnproto.module/capnproto.gyp:kj",
-				"../../../_CPPModules/capnproto.module/capnproto.gyp:libcapnp",
-				"../../../_CPPModules/yaml-cpp.module/yaml-cpp.gyp:yaml-cpp",
-				"../../../_CPPModules/apr.module/apr.gyp:apr",
-				"../../../_CPPModules/zlib.module/zlib.gyp:zlib",
+				'build_capnp_tool',
+				"../capnproto.module/capnproto.gyp:kj",
+				"../capnproto.module/capnproto.gyp:libcapnp",
+				"../yaml-cpp.module/yaml-cpp.gyp:yaml-cpp",
+				"../apr.module/apr.gyp:apr",
+				"../zlib.module/zlib.gyp:zlib",
 			],
 			'include_dirs': [
 				"src",
@@ -189,6 +200,34 @@
 					"NTA_INTERNAL",
 				],
 			},
+			'rules': [
+				{
+					'rule_name': 'capnp-ext',
+					'extension': 'capnp',
+					'msvs_external_rule': 0,
+					'msvs_cygwin_shell':0,
+					'msvs_quote_cmd':1,
+					
+					'inputs': [
+						'<(RULE_INPUT_PATH)',
+					],
+					'outputs': [
+						'<(RULE_INPUT_PATH).h'
+					],
+					'action=':[
+						'python',
+						"-cfrom subprocess import call;my_env={};my_env['PATH']=r'<(PRODUCT_DIR).';call(r'<(PRODUCT_DIR)capnp compile -oc++ <(RULE_INPUT_NAME) -I ../../',env=my_env,cwd=r'<(RULE_INPUT_DIRNAME)')",
+						#'<(PRODUCT_DIR)capnp', 
+						#'compile',
+						#"-oc++",
+						#'<(RULE_INPUT_PATH)',
+						#'-I <(RULE_INPUT_DIRNAME)'
+					],
+
+					'message': 'Generating capnp <(RULE_INPUT_PATH)',
+					#'process_outputs_as_sources': 1,
+				},
+			],
 			'sources': [
 				"external/common/include/csv.h",
 				"external/common/include/CSV_README.md",
@@ -457,8 +496,8 @@
 			'target_name': 'nupic_test',
 			'type': 'executable',
 			'dependencies': [
-				"../../../_CPPModules/capnproto.module/capnproto.gyp:libcapnp",
-				"../../../_CPPModules/apr.module/apr.gyp:apr",
+				"../capnproto.module/capnproto.gyp:libcapnp",
+				"../apr.module/apr.gyp:apr",
 				"nupic_core"
 			],
 			'include_dirs': [
@@ -547,7 +586,7 @@
 			'target_name': 'nupic_hello',
 			'type': 'executable',
 			'dependencies': [
-				"../../../_CPPModules/capnproto.module/capnproto.gyp:libcapnp",
+				"../capnproto.module/capnproto.gyp:libcapnp",
 				"nupic_core"
 			],
 			'include_dirs': [
@@ -565,7 +604,7 @@
 			'target_name': 'nupic_prototest',
 			'type': 'executable',
 			'dependencies': [
-				"../../../_CPPModules/capnproto.module/capnproto.gyp:libcapnp",
+				"../capnproto.module/capnproto.gyp:libcapnp",
 				"nupic_core"
 			],
 			'include_dirs': [
@@ -582,7 +621,7 @@
 			'target_name': 'nupic_regions',
 			'type': 'executable',
 			'dependencies': [
-				"../../../_CPPModules/capnproto.module/capnproto.gyp:libcapnp",
+				"../capnproto.module/capnproto.gyp:libcapnp",
 				"nupic_core"
 			],
 			'include_dirs': [
