@@ -518,7 +518,46 @@
 				"VERSION",
 
 			],
-		}, {
+		}, 
+		{
+			'target_name': 'nupic_ConnectionsPerformanceTest',
+			'type': 'executable',
+			'dependencies': [
+				"../capnproto.module/capnproto.gyp:libcapnp",
+				"nupic_core"
+			],
+			'include_dirs': [
+
+			],
+			'direct_dependent_settings': {
+				'include_dirs': [
+				],
+			},
+			'sources': [
+				"src/test/integration/ConnectionsPerformanceTest.cpp",
+				"src/test/integration/ConnectionsPerformanceTest.hpp",
+			],
+		}, 
+		{
+			'target_name': 'nupic_CppRegionTest',
+			'type': 'executable',
+			'dependencies': [
+				"../capnproto.module/capnproto.gyp:libcapnp",
+				"nupic_core"
+			],
+			'include_dirs': [
+
+			],
+			'direct_dependent_settings': {
+				'include_dirs': [
+				],
+			},
+			'sources': [
+				"src/test/integration/CppRegionTest.cpp",
+			],
+		}, 
+		
+		{
 			'target_name': 'nupic_test',
 			'type': 'executable',
 			'dependencies': [
@@ -537,9 +576,8 @@
 				"external/common/include/gtest/gtest.h",
 				"external/common/src/gtest/gtest-all.cpp",
 
-				"src/test/integration/ConnectionsPerformanceTest.cpp",
-				"src/test/integration/ConnectionsPerformanceTest.hpp",
-				"src/test/integration/CppRegionTest.cpp",
+				
+				
 				 # "src/test/integration/PyRegionTest.cpp",
 				"src/test/unit/algorithms/AnomalyTest.cpp",
 				"src/test/unit/algorithms/Cells4Test.cpp",
@@ -608,7 +646,8 @@
 				"src/test/unit/utils/RandomTest.cpp",
 				"src/test/unit/utils/WatcherTest.cpp",
 			],
-		}, {
+		}, 
+		{
 			'target_name': 'nupic_hello',
 			'type': 'executable',
 			'dependencies': [
@@ -626,7 +665,8 @@
 				"src/examples/algorithms/HelloSP_TP.cpp",
 				"src/examples/algorithms/README.md",
 			],
-		}, {
+		}, 
+		{
 			'target_name': 'nupic_prototest',
 			'type': 'executable',
 			'dependencies': [
