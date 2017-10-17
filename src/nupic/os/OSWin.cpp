@@ -27,7 +27,9 @@
 
 #if defined(NTA_OS_WINDOWS)
 #define NOMINMAX
-//#include <windows.h>
+#define NOMINMAX
+#define _WINSOCKAPI_
+#include <windows.h>
 
 
 #include <nupic/os/Directory.hpp>
